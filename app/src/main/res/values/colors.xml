@@ -11,6 +11,6 @@
     <color name="buttonPressGrey">#e2e2e2</color>
     <color name="backgroundWhite">#fcfcfc</color>
     <color name="textColor">#555555</color>
-    <color name="green">#7aaf3b</color>
-    <color name="greenPress">#618c2f</color>
+    <color name="buttonGreen">#7aaf3b</color>
+    <color name="buttonPressGreen">#618c2f</color>
 </resources>

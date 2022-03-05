@@ -84,7 +84,7 @@
                 android:enabled="false"
                 android:stateListAnimator="@null"
                 android:text="()"
-                android:textColor="@color/green"
+                android:textColor="@color/buttonGreen"
                 android:textSize="24sp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -96,7 +96,7 @@
                 android:onClick="buttonClicked"
                 android:stateListAnimator="@null"
                 android:text="%"
-                android:textColor="@color/green"
+                android:textColor="@color/buttonGreen"
                 android:textSize="24sp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -108,7 +108,7 @@
                 android:onClick="buttonClicked"
                 android:stateListAnimator="@null"
                 android:text="/"
-                android:textColor="@color/green"
+                android:textColor="@color/buttonGreen"
                 android:textSize="24sp" />
 
         </TableRow>
@@ -121,7 +121,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="7dp"
                 android:background="@drawable/button_background"
-                android:onClick="clearButtonClicked"
+                android:onClick="buttonClicked"
                 android:stateListAnimator="@null"
                 android:text="7"
                 android:textSize="24sp" />
@@ -132,8 +132,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="7dp"
                 android:background="@drawable/button_background"
-                android:clickable="false"
-                android:enabled="false"
+                android:onClick="buttonClicked"
                 android:stateListAnimator="@null"
                 android:text="8"
                 android:textColor="@color/black"
@@ -160,7 +159,7 @@
                 android:onClick="buttonClicked"
                 android:stateListAnimator="@null"
                 android:text="X"
-                android:textColor="@color/green"
+                android:textColor="@color/buttonGreen"
                 android:textSize="24sp" />
 
         </TableRow>
@@ -173,7 +172,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="7dp"
                 android:background="@drawable/button_background"
-                android:onClick="clearButtonClicked"
+                android:onClick="buttonClicked"
                 android:stateListAnimator="@null"
                 android:text="4"
                 android:textSize="24sp" />
@@ -184,8 +183,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="7dp"
                 android:background="@drawable/button_background"
-                android:clickable="false"
-                android:enabled="false"
+                android:onClick="buttonClicked"
                 android:stateListAnimator="@null"
                 android:text="5"
                 android:textColor="@color/black"
@@ -212,7 +210,7 @@
                 android:onClick="buttonClicked"
                 android:stateListAnimator="@null"
                 android:text="-"
-                android:textColor="@color/green"
+                android:textColor="@color/buttonGreen"
                 android:textSize="24sp" />
 
         </TableRow>
@@ -225,7 +223,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="7dp"
                 android:background="@drawable/button_background"
-                android:onClick="clearButtonClicked"
+                android:onClick="buttonClicked"
                 android:stateListAnimator="@null"
                 android:text="1"
                 android:textSize="24sp" />
@@ -236,8 +234,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="7dp"
                 android:background="@drawable/button_background"
-                android:clickable="false"
-                android:enabled="false"
+                android:onClick="buttonClicked"
                 android:stateListAnimator="@null"
                 android:text="2"
                 android:textColor="@color/black"
@@ -264,7 +261,7 @@
                 android:onClick="buttonClicked"
                 android:stateListAnimator="@null"
                 android:text="+"
-                android:textColor="@color/green"
+                android:textColor="@color/buttonGreen"
                 android:textSize="24sp" />
 
         </TableRow>
@@ -289,8 +286,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="7dp"
                 android:background="@drawable/button_background"
-                android:clickable="false"
-                android:enabled="false"
+                android:onClick="buttonClicked"
                 android:stateListAnimator="@null"
                 android:text="0"
                 android:textColor="@color/black"
@@ -319,7 +315,6 @@
                 android:text="="
                 android:textColor="@color/white"
                 android:textSize="24sp" />
-
         </TableRow>
     </TableLayout>
 
