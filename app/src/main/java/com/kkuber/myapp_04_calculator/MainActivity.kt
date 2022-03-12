@@ -123,7 +123,7 @@ class MainActivity : AppCompatActivity() {
 
         if (expressionTexts[0].isNumber().not() || expressionTexts[2].isNumber().not()) {
             Toast.makeText(this, "오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
-            return null
+            return
         }
 
         val expressionText = expressionTextView.text.toString()
