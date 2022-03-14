@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +24,10 @@ class MainActivity : AppCompatActivity() {
 
     private val historyLayout : View by lazy {
         findViewById<View>(R.id.historyLayout)
+    }
+
+    private val historyLinearLayout : View by lazy {
+        findViewById<View>(R.id.historyLinearLayout)
     }
 
     private var isOperator = false
@@ -171,19 +176,23 @@ class MainActivity : AppCompatActivity() {
         isOperator = false
         hasOperator = false
     }
-}
 
-fun historyButtonClicked(v : View) {
+    fun historyButtonClicked(v : View) {
+        // TODO 디비에서 모든 기록 가져오기
+        // TODO 뷰 모든 기록 할당하기
+        historyLayout.isVisible = true
 
-}
+    }
 
-fun closeHistoryButtonClicked(v : View) {
+    fun closeHistoryButtonClicked(v : View) {
+        historyLayout.isVisible = false
 
-}
+    }
 
-fun clearHistoryButtonClicked(v : View) {
-    // TODO 디비에서 모든 기록 삭제
-    // TODO 뷰에서 모든 기록 삭제
+    fun clearHistoryButtonClicked(v : View) {
+        // TODO 디비에서 모든 기록 삭제
+        // TODO 뷰에서 모든 기록 삭제
+    }
 }
 
 fun String.isNumber(): Boolean {
