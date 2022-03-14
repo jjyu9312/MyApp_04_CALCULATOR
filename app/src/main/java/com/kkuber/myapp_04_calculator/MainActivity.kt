@@ -13,12 +13,16 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
-    private val expressionTextView: TextView by lazy {
+    private val expressionTextView : TextView by lazy {
         findViewById<TextView>(R.id.expressionTextView)
     }
 
-    private val resultTextView: TextView by lazy {
+    private val resultTextView : TextView by lazy {
         findViewById<TextView>(R.id.resultTextView)
+    }
+
+    private val historyLayout : View by lazy {
+        findViewById<View>(R.id.historyLayout)
     }
 
     private var isOperator = false
@@ -135,8 +139,6 @@ class MainActivity : AppCompatActivity() {
         Log.d("MainActivity", "resultButtonClicked-result : ${resultText}");
         isOperator = false
         hasOperator = false
-
-
     }
 
     private fun calculateExpression(): String {
@@ -171,6 +173,18 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+fun historyButtonClicked(v : View) {
+
+}
+
+fun closeHistoryButtonClicked(v : View) {
+
+}
+
+fun clearHistoryButtonClicked(v : View) {
+    // TODO 디비에서 모든 기록 삭제
+    // TODO 뷰에서 모든 기록 삭제
+}
 
 fun String.isNumber(): Boolean {
     return try {
