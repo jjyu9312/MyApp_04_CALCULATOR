@@ -7,10 +7,14 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.room.Room
+import com.kkuber.myapp_04_calculator.model.History
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,9 +30,11 @@ class MainActivity : AppCompatActivity() {
         findViewById<View>(R.id.historyLayout)
     }
 
-    private val historyLinearLayout : View by lazy {
-        findViewById<View>(R.id.historyLinearLayout)
+    private val historyLinearLayout : LinearLayout by lazy {
+        findViewById<LinearLayout>(R.id.historyLinearLayout)
     }
+
+    lateinit var db : AppDatabase
 
     private var isOperator = false
     private var hasOperator = false
@@ -37,6 +43,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        db = Room.databaseBuilder( //AppDatabase 만들기
+          applicationContext,
+          AppDatabase::class.java,
+          "historyDB"
+        ).build()
     }
 
     fun buttonClicked(v: View) {
@@ -105,12 +117,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         val ssb = SpannableStringBuilder(expressionTextView.text)
-        ssb.setSpan(
-            ForegroundColorSpan(getColor(R.color.buttonGreen)),
-            expressionTextView.text.length - 1,
-            expressionTextView.text.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ssb.setSpan(
+                ForegroundColorSpan(getColor(R.color.buttonGreen)),
+                expressionTextView.text.length - 1,
+                expressionTextView.text.length,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
 
         expressionTextView.text = ssb
 
@@ -137,6 +151,13 @@ class MainActivity : AppCompatActivity() {
 
         val expressionText = expressionTextView.text.toString()
         val resultText = calculateExpression()
+
+        // todo DB에 넣어주는 부분
+        // db와 관련된 과정은 새로운 쓰레드에서 해야 함
+        Thread(Runnable {
+            db.historyDao().insertHistory(History(null, expressionText, resultText))
+            Log.d("MainActivity", "resultButtonClicked : DB thread Start - insert");
+        }).start()
 
         resultTextView.text = ""
         expressionTextView.text = resultText
@@ -178,8 +199,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun historyButtonClicked(v : View) {
-        // TODO 디비에서 모든 기록 가져오기
         // TODO 뷰 모든 기록 할당하기
+        historyLayout.isVisible = true
+        historyLinearLayout.removeAllViews(); // LinearLayout 하위에 있는 모든 view들이 삭제됨
+        // TODO 디비에서 모든 기록 가져오기
+        Thread(Runnable {
+            db.historyDao().getAll().reversed().forEach {  // 최신 것부터 보여주기 위해 reversed 사용
+                runOnUiThread {
+                    val historyView = LayoutInflater.from(this).inflate(R.layout.history_row, null, false)
+                    historyView.findViewById<TextView>(R.id.expressionTextView).text = it.expression
+                    historyView.findViewById<TextView>(R.id.resultButton).text = "= ${it.result}"
+
+                    historyLinearLayout.addView(historyView) // 많은 뷰들이 스크롤 뷰 안에 있어 스크롤되면서 볼 수 있게 됨
+                }
+            }
+        }).start()
+
         historyLayout.isVisible = true
 
     }
@@ -190,8 +225,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun clearHistoryButtonClicked(v : View) {
-        // TODO 디비에서 모든 기록 삭제
         // TODO 뷰에서 모든 기록 삭제
+        historyLinearLayout.removeAllViews()
+        // TODO 디비에서 모든 기록 삭제
+        Thread(Runnable {
+            db.historyDao().deleteAll()
+        }).start()
     }
 }
 
