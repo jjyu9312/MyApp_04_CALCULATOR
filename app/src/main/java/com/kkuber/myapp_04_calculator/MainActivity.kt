@@ -130,6 +130,7 @@ class MainActivity : AppCompatActivity() {
 
         isOperator = true
         hasOperator = true
+
     }
 
     fun resultButtonClicked(v: View) {
