@@ -127,7 +127,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         expressionTextView.text = ssb
-
         isOperator = true
         hasOperator = true
 
