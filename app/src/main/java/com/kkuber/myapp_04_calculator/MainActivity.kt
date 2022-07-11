@@ -129,7 +129,6 @@ class MainActivity : AppCompatActivity() {
         expressionTextView.text = ssb
         isOperator = true
         hasOperator = true
-
     }
 
     fun resultButtonClicked(v: View) {
