@@ -116,7 +116,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         val ssb = SpannableStringBuilder(expressionTextView.text)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ssb.setSpan(
