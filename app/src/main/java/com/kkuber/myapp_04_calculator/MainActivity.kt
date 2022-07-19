@@ -187,7 +187,6 @@ class MainActivity : AppCompatActivity() {
             "%" -> (exp1 % exp2).toString()
             else -> ""
         }
-
     }
 
     fun clearButtonClicked(v: View) {
